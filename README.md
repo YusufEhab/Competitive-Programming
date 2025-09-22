@@ -1,3 +1,3 @@
-### DSA for Compatitive Programming
-- Templates for complex DSA used in CP
+### Compatitive Programming
+- Templates and soultions I used in CP
 - Material and simple DSA are in notion 
