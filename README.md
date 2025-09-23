@@ -6,4 +6,4 @@
 
 4. Code it and submit 
 
-5. while(!accepted) debug by checking that you have concedered all the possible and edge cases, the code is right and doesn't contain any typo 
+5. while(!accepted) debug by checking that you have considered all the possible and edge cases, the code is right and doesn't contain any typo 
