@@ -21,8 +21,8 @@ void add2edge(int u, int v) {
     addedge(v, u);
 }
 //undirected graph
-int vis[M], idx;
-int ans[M], sz;
+int vis[M*2], idx;
+int ans[M*2], sz;
 int deg[N];
 void euler(int u) {
     for (int &e = head[u], v; ~e;) {
