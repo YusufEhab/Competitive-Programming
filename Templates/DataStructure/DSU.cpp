@@ -1,7 +1,14 @@
 #include<bits/stdc++.h>
 #define int long long
 using namespace std;
-
+/*
+    Graph connectivity -> connected if same par
+    Undirected cycle detection -> if already connected
+    Kruksal -> sort edges by weight. Add edge if find(u)!=find(v) stop when cmp = 1
+    Online edge deletion -> delete cycle edges 
+    count components -> no of roots
+    iterate component members -> lists
+*/
 const int N = 2e5 + 5;
 struct DSU {
     vector<int> par;
