@@ -1,1 +1,1 @@
-//code will be here
+//relative weight queries
