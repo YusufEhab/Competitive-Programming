@@ -2,11 +2,10 @@
 const int N = 2e5+5;
 struct DSU {
     vector<int> par;
-    int cmp;
     int col[N];
     DSU(int n) {
         par.assign(n+1, -1);
-        cmp = n;
+        memset(col, 0, n*sizeof col[0]);
     }
     pair<int,int> find(int u) {
         if (par[u] < 0) return {u,0};
