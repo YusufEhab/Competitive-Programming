@@ -1,3 +1,4 @@
+// 2-sat problem is to be sure that no contracdiction are in the same scc (x && !x) or (y && !y) ...
 #include<bits/stdc++.h>
 using namespace std;
 
