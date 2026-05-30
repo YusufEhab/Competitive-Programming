@@ -40,24 +40,6 @@ void solve() {
     for (auto &u: order) {
         if (!vis_in[u]) dfs2(u, id++);
     }
-    
-  //get max component
-    int mx = 0, c = 0;
-    vector<int> cnt(n+1);
-    for (int i = 1; i <= n; ++i) {
-        ++cnt[scc[i]];
-        if (cnt[scc[i]] > mx) {
-            mx = cnt[scc[i]];
-            c = scc[i];
-        }
-    }
-    vector<int> ans;
-    for (int i = 1; i <= n; ++i) {
-        if (scc[i] == c) ans.emplace_back(i);
-    }
-  
-    cout << id-1 << '\n';
-    for (auto &i: ans) cout << i << " ";
 }
 
 signed main() {
