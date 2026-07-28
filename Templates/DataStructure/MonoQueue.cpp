@@ -7,14 +7,12 @@ struct monoQueue {
         }
     };
     deque<Node> d;
-    void check(int l) {
+    void push(int l, int r, int x) {
         while (!d.empty() && d.front().idx < l) d.pop_front();
+        while (!d.empty() && x <= d.back().val) d.pop_back(); // <<< min  
+        d.push_back(Node(x, r));
     }
-    void push(int val, int idx) {
-        while (!d.empty() && val <= d.back().val) d.pop_back();
-        d.push_back(Node(val, idx));
-    }
-    int front() {
+    int get() {
         return d.front().val;
     }
 };
