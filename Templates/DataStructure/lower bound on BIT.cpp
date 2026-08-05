@@ -23,9 +23,10 @@ struct BIT {
     int lower_bound(int sum) {
         int idx = 0;
         for (int i = n; i > 0; i >>= 1) {
-            if (b[idx+i] < sum) {
-                sum -= b[idx+i];
-                idx += i;
+            int nxt = idx+i;
+            if (nxt <= n && b[nxt] < sum) {
+                sum -= b[nxt];
+                idx = nxt;
             }
         }
         return idx + 1;
