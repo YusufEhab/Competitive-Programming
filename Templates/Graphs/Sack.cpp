@@ -4,10 +4,9 @@ using namespace std;
 
 const int N = 3e5+5;
 vector<int> adj[N];
-vector<pair<int,int>> Q[N]; // col, idx;
 int col[N];
 
-int sz[N], big[N], freq[N], ans[N];
+int sz[N], big[N], freq[N], ans[N], sum[N], mx_freq;
 void pre(int u, int par) {
     sz[u] = 1;
     for (auto &v: adj[u]) {
@@ -17,8 +16,16 @@ void pre(int u, int par) {
         if (!big[u] || sz[v] > sz[big[u]]) big[u] = v;
     }
 }
+void update(int c, int d) { //update subtree <-----------
+    if (freq[c]+d > mx_freq) ++mx_freq;
+    else if (freq[c] == mx_freq && sum[freq[c]] == c) --mx_freq;
+
+    sum[freq[c]] -= c;
+    freq[c] += d;
+    sum[freq[c]] += c;
+}
 void add(int u, int par, int d) {
-    freq[col[u]] += d;
+    update(col[u], d);
     for (auto &v: adj[u]) {
         if (v != par) {
             add(v, u, d);
@@ -32,17 +39,15 @@ void dfs(int u, int par, bool keep) {
         }
     }
     //add
-    if (big[u]) dfs(big[u], u, true); //heavy subtrees
-    ++freq[col[u]];
+    if (big[u]) dfs(big[u], u, true); //heavy subtree
+    update(col[u], 1);
     for (auto &v: adj[u]) {
         if (v != par && v != big[u]) {
             add(v, u, 1); //light subtrees
         }
     }
-    //ans
-    for (auto &[c, idx]: Q[u]) {
-        ans[idx] = freq[c];
-    }
+    //ans queries <-----------
+    ans[u] = sum[mx_freq];
     //remove
     if (!keep) add(u, par, -1);
 }
@@ -55,14 +60,9 @@ void solve() {
         adj[u].emplace_back(v);
         adj[v].emplace_back(u);
     }
-    int q; cin >> q;
-    for (int i = 1, u, c; i <= q; ++i) {
-        cin >> u >> c;
-        Q[u].emplace_back(c, i);
-    }
     pre(1,1);
     dfs(1,1,true);
-    for (int i = 1; i <= q; ++i) cout << ans[i] << " ";
+    for (int i = 1; i <= n; ++i) cout << ans[i] << " ";
 }
 
 signed main() {
