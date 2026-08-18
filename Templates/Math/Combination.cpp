@@ -1,5 +1,5 @@
-const int mod = 1e7+19;
-const int N = 1e5+5;
+const int mod = 1e9+7;
+const int N = 1e6+5;
 int fact[N], inv[N];
 int pw(int a, int b) {
     int res = 1;
@@ -21,10 +21,16 @@ void gen() {
     }
 }
 int nCr(int n, int r) {
-  if (n < 0 || r > n) return 0;
-  return fact[n] * inv[n-r] % mod * inv[r] % mod;
+    if (r < 0 || r > n) return 0;
+    int x = n % mod, res = 1;
+    if (x < r) return 0;
+    for (int i = 0; i < r; ++i) res = res * (x-i) % mod;
+    return res * inv[r] % mod;
 }
 int nPr(int n, int r) {
-  if (n < 0 || r > n) return 0;
-  return fact[n] * inv[n-r] % mod;
+    if (r < 0 || r > n) return 0;
+    int x = n % mod, res = 1;
+    if (x < r) return 0;
+    for (int i = 0; i < r; ++i) res = res * (x-i) % mod;
+    return res;
 }
