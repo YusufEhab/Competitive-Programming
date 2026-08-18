@@ -10,3 +10,6 @@ void erase(OrderedSet &st, int val){
 // multi set/map has reversed lower/upper bound
 // order_of_key(x), no of elements < x 
 // find_by_order(k), Kth number in the set
+
+#pragma GCC target("avx,avx2,popcnt,lzcnt")
+#pragma GCC optimize("O3,unroll-loops,fast-math")
